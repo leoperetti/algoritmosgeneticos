@@ -1,7 +1,7 @@
  package TP1;
  import java.util.ArrayList;
 import java.util.Random;
- 
+ //Creo la clase Prueba
  public class Prueba {
  
  	//Declaración de variables
@@ -370,7 +370,7 @@ import java.util.Random;
 		}
 		return maxis;
 	}
-
+	//Ordeno de menor a mayor el arreglo valoresFitness
 	private static float[] ordenarMenorAMayor(float[] vl) {
 		float[] fit = vl;
 		for(int k=0;k<10;k++) {

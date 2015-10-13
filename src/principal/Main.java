@@ -6,7 +6,8 @@ public class Main {
 
 	static public String jugadores[][] = new String[2][16];
 	static public String opciones[][] = {{"AA","4"},{"AN","0"},{"NA","5"},{"NN","1"}};
-	
+	static public int valoresXJugador[][] = new int[2][16];
+	static public int sumatoria[] = new int[2];
 	static public String conjuntoCombinaciones[] = 
 		{ "AAAA", "NAAA", "ANAA", "AANA", "AAAN", "NNAA", "AANN", "NANA", 
 		  "NAAN", "NNAN", "NNNA", "ANAN", "NNNN", "ANNN", "ANNA", "NANN" };
@@ -18,16 +19,20 @@ public class Main {
 		
 		primerDecision();
 		rellenoCombinaciones();
-		for(int j=0;j<2;j++)
-		{
-			for(int i=0;i<16;i++)
+		sumaValores();
+		
+		System.out.println("Jugador 1"+"\t\t"+"Jugador 2");		
+		for(int i=0;i<16;i++)
 			{
-				System.out.println(jugadores[j][i]);
+				System.out.println(jugadores[0][i]+" "+valoresXJugador[0][i]+"\t\t"+jugadores[1][i]+" "+valoresXJugador[1][i]);
 			}
 			System.out.println(" ");
+		for(int m = 0; m<2; m++)
+		{
+			System.out.println(sumatoria[m]);
 		}
-		
-		
+			
+
 	}
 
 	private static void primerDecision() {
@@ -82,8 +87,44 @@ public class Main {
 	}
 	
 	private static void sumaValores() {
+	
+	for(int k=0;k<2;k++)
+	{
+		int cont = 0;
+		for(int i=0;i<16;i++)
+		{
+			int sum = 0;
+			String par;
+			int a=0,b=2;
+			for(int j=0;j<3;j++)
+			{
+				par = jugadores[k][i].substring(a, b);
+				sum += buscarValorPar(par);
+				a += 2;
+				b += 2;
+			}
+			valoresXJugador[k][i] = sum;
+		}
+		for(int j = 0; j<16; j++)
+		{
+			cont = cont + valoresXJugador[k][j];
+		}
+		sumatoria[k] = cont;
+	}
+	
 		
-		
-		
+	}
+
+	private static int buscarValorPar(String par) {
+		int valor = 0;
+		for(int i = 0; i<4; i++)
+		{			
+			if(opciones[i][0].equals(par))
+				{
+					valor = Integer.parseInt(opciones[i][1]);
+					break;
+				}
+		}
+		return valor;
 	}
 }
